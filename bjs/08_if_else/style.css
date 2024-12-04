@@ -2,3 +2,27 @@
     height: 100vh;
     font-family: 'Open Sans', monospace;
 }
+
+body {
+    background-color: aquamarine;
+}
+
+.card {
+    background-color: bisque;
+}
+
+.card-header {
+    background-color:darksalmon;
+}
+
+.card-footer {
+    background-color:darksalmon;  
+}
+
+#btnLess {
+    background-color:darkcyan;
+}
+
+#btnOver {
+    background-color:darkcyan;
+}
