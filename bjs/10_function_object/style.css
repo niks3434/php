@@ -1,0 +1,15 @@
+button {
+    background: red;
+}
+
+body {
+    background: rgb(255, 216, 223);
+}
+
+.card-header {
+    background: rgb(213, 166, 174);
+}
+
+.card-body {
+    background: rgb(226, 203, 207);
+}
