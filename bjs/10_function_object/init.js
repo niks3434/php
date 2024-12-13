@@ -20,4 +20,3 @@ buttonDel.addEventListener('click', function () {
     document.getElementById('birthYearOutput').innerText = 'Генерация года рождения';
     document.getElementById('professionOutput').innerText = '';
 });
-
