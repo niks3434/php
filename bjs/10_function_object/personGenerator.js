@@ -129,9 +129,9 @@ const personGenerator = {
 
     randomProfession: function() {
         const profession = this.randomValue(this.professionsJson);
-        // const maleOnlyProfessions = ["Шахтер", "Токарь", "Солдат"];
+        const maleOnlyProfessions = ["Шахтер", "Токарь", "Солдат"];
 
-        if (this.person.gender === this.GENDER_FEMALE && ["Шахтер", "Токарь", "Солдат"].includes(profession)) {
+        if (this.person.gender === this.GENDER_FEMALE && maleOnlyProfessions.includes(profession)) {
             return this.randomProfession();
         }
 
