@@ -1,5 +1,9 @@
-button {
+.buttonDel {
     background: red;
+}
+
+.buttonGen {
+    background: green;
 }
 
 body {

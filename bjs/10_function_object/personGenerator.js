@@ -51,16 +51,23 @@ const personGenerator = {
         }
     }`,
 
-
-    patronymicJson: `{
-        "count": 5,
-        "list": {     
-            "id_1": "Александрович",
-            "id_2": "Максимович",
-            "id_3": "Иванович",
-            "id_4": "Даниилович",
-            "id_5": "Андреевич"
-        } 
+    professionsJson: `{
+        "count": 13,
+        "list": {
+            "id_1": "Инженер",
+            "id_2": "Программист",
+            "id_3": "Учитель",
+            "id_4": "Врач",
+            "id_5": "Строитель",
+            "id_6": "Водитель",
+            "id_7": "Полицейский",
+            "id_8": "Менеджер",
+            "id_9": "Актер",
+            "id_10": "Повар",
+            "id_11": "Шахтер",
+            "id_12": "Токарь",
+            "id_13": "Солдат"
+        }
     }`,
     
     
@@ -101,12 +108,47 @@ const personGenerator = {
 
 
     randomPatronymic:  function() {
-        const patronymic = this.randomValue(this.patronymicJson);
-        return this.person.gender === this.GENDER_FEMALE 
-                        ? patronymic.slice(0, -2) + "на" 
-                        : patronymic;
+        const patronymic = this.randomValue(this.firstNameMaleJson);
+
+        if(patronymic.endsWith("ей") || patronymic.endsWith("ий")) {
+            return this.person.gender === this.GENDER_FEMALE 
+                        ? patronymic.slice(0, -1) + "евна" 
+                        : patronymic.slice(0, -1) + "евич";
+
+        } else if (patronymic === "Никита") {
+            return this.person.gender === this.GENDER_FEMALE 
+                        ? patronymic.slice(0, -1) + "ична" 
+                        : patronymic.slice(0, -1) + "ич";
+
+        } else {
+            return this.person.gender === this.GENDER_FEMALE 
+                        ? patronymic + "овна" 
+                        : patronymic + "ович";
+        } 
     },
 
+    randomProfession: function() {
+        const profession = this.randomValue(this.professionsJson);
+        // const maleOnlyProfessions = ["Шахтер", "Токарь", "Солдат"];
+
+        if (this.person.gender === this.GENDER_FEMALE && ["Шахтер", "Токарь", "Солдат"].includes(profession)) {
+            return this.randomProfession();
+        }
+
+        if (this.person.gender === this.GENDER_FEMALE) {
+            if (profession.endsWith("ый") || profession.endsWith("ий")) {
+                return profession.slice(0, -2) + "ая";
+
+            } else if (profession === "Актер") {
+                return "Актриса";
+
+            } else {
+                return profession;
+            }
+        } else {
+            return profession;
+        }
+    },
 
 
     getPerson: function () {
@@ -116,6 +158,7 @@ const personGenerator = {
         this.person.surname = this.randomSurname();
         this.person.patronymic = this.randomPatronymic();
         this.person.age = this.randomAge();
+        this.person.profession = this.randomProfession();
         return this.person;
     }
 };
